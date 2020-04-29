@@ -1,0 +1,11 @@
+.splash {
+  width: 100vw;
+  height: 0;
+  position: fixed;
+  bottom: 0;
+  background-color: $c-dark;
+
+  &.active {
+    animation: 0.5s ease expand-to-top;
+  }
+}
