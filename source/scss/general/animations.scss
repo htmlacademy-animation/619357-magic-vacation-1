@@ -34,3 +34,13 @@
   }
 }
 
+@keyframes expand-to-top {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 100vh;
+  }
+}
+

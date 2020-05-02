@@ -1,22 +1,29 @@
 import throttle from 'lodash/throttle';
 
+const ScreenId = {
+  STORY: 1,
+  PRIZES: 2,
+};
+
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 2000;
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
+    this.splashElement = document.querySelector(`.splash`);
 
     this.activeScreen = 0;
+    this.previousScreen = null;
     this.onScrollHandler = this.onScroll.bind(this);
-    this.onUrlHashChengedHandler = this.onUrlHashChenged.bind(this);
+    this.onUrlHashChangedHandler = this.onUrlHashChanged.bind(this);
   }
 
   init() {
     document.addEventListener(`wheel`, throttle(this.onScrollHandler, this.THROTTLE_TIMEOUT));
-    window.addEventListener(`popstate`, this.onUrlHashChengedHandler);
+    window.addEventListener(`popstate`, this.onUrlHashChangedHandler);
 
-    this.onUrlHashChenged();
+    this.onUrlHashChanged();
     this.changePageDisplay();
   }
 
@@ -24,20 +31,34 @@ export default class FullPageScroll {
     const currentPosition = this.activeScreen;
     this.reCalculateActiveScreenPosition(evt.deltaY);
     if (currentPosition !== this.activeScreen) {
+      this.previousScreen = currentPosition;
       this.changePageDisplay();
     }
   }
 
-  onUrlHashChenged() {
+  onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
+    this.previousScreen = this.activeScreen;
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay();
   }
 
   changePageDisplay() {
-    this.changeVisibilityDisplay();
+    const showPage = () => {
+      this.changeVisibilityDisplay();
+      this.emitChangeDisplayEvent();
+    };
+
+    if (this.previousScreen === ScreenId.STORY && this.activeScreen === ScreenId.PRIZES) {
+      this.splashElement.classList.add(`active`);
+      this.splashElement.addEventListener(`animationend`, () => {
+        this.splashElement.classList.remove(`active`);
+        showPage();
+      }, {once: true});
+    } else {
+      showPage();
+    }
     this.changeActiveMenuItem();
-    this.emitChangeDisplayEvent();
   }
 
   changeVisibilityDisplay() {

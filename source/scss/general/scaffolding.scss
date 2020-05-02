@@ -30,6 +30,7 @@ html {
 
 body {
   position: relative;
+  background-color: $c-dark;
   margin: 0;
   padding: 0;
   min-width: 320px;
@@ -39,7 +40,6 @@ body {
   line-height: 1.1;
   font-weight: 600;
   color: $c-light;
-  background-color: $c-dark;
   overflow: hidden;
 
   -webkit-font-smoothing: antialiased;
