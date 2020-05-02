@@ -10,6 +10,18 @@
   }
 }
 
+@keyframes split-text {
+  from {
+    transform: translateY(6.7em);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 @keyframes fade-in-to-left {
   from {
     transform: translateX(4rem);
@@ -74,6 +86,16 @@
   }
 
   100% {
+    opacity: 1;
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+
+  to {
     opacity: 1;
   }
 }

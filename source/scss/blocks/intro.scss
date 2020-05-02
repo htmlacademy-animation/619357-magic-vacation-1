@@ -93,7 +93,10 @@
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.27;
+  opacity: 0;
   animation: fade-in-to-top 1s ease;
+  animation-fill-mode: forwards;
+  animation-delay: 1.3s;
 
   @media (min-width: $stop-scaling) {
     width: 509px;
@@ -142,6 +145,12 @@
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.2;
+  opacity: 0;
+  animation-name: show;
+  animation-timing-function: ease-out;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-delay: 2.3s;
 
   @media (min-width: $stop-scaling) {
     margin: 0 0 16px;
