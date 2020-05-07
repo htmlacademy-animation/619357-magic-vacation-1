@@ -29,9 +29,6 @@
 .page-header__logo {
   @include hover;
   position: relative;
-  transform: translateX(-40%);
-  transition: all 0.5s cubic-bezier(0.34, 1.01, 0.73, 0.94) 0.3s;
-  opacity: 0;
   flex: none;
   top: -0.5rem;
   display: block;
@@ -72,11 +69,6 @@
     width: 100%;
     height: auto;
   }
-}
-
-.ready .page-header__logo {
-  transform: translateX(0);
-  opacity: 1;
 }
 
 .page-header__toggler {
@@ -138,9 +130,6 @@
 .page-header__nav {
   display: flex;
   align-items: center;
-  opacity: 0;
-  transform: translateY(-30px);
-  transition: all 0.3s cubic-bezier(0.34, 1.01, 0.73, 0.94) 0.5s;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
@@ -179,11 +168,6 @@
       transform: translateX(0);
     }
   }
-}
-
-.ready .page-header__nav {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .page-header__menu {
@@ -256,7 +240,6 @@
     position: relative;
     display: block;
     color: inherit;
-    transition: color 0.2s ease;
     padding: 0 0.5em 0.5em;
 
     &::after {
@@ -266,17 +249,8 @@
       width: 100%;
       height: 2px;
       background-color: $c-light;
+      display: none;
       left: 0;
-      transform: scaleX(0);
-      transform-origin: 100%;
-      transition-property: background-color, transform;
-      transition-duration: 0.3s;
-      transition-timing-function: ease-out;
-
-      @media (min-width: $stop-scaling) {
-        left: -5px;
-        right: -5px;
-      }
 
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
@@ -294,7 +268,6 @@
     &.active {
       &::after {
         display: block;
-        transform: scaleX(1);
       }
     }
 
@@ -304,10 +277,7 @@
       outline: none;
 
       &::after {
-        display: block;
         opacity: 1;
-        transform: scaleX(1);
-        transform-origin: 0 0;
         background-color: $c-purple;
       }
     }

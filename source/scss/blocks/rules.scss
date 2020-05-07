@@ -59,7 +59,6 @@
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.2;
-  animation: fade-in-to-top 0.3s ease-out;
 
   @media (min-width: $stop-scaling) {
     margin-left: 58px;
@@ -121,14 +120,14 @@
 .rules__item {
   position: relative;
   margin: 0 0 6.2rem;
-  padding-top: 1rem;
+  padding-top: 0.6rem;
   padding-left: 6.5rem;
   break-inside: avoid;
 
   @media (min-width: $stop-scaling) {
     margin: 0 0 62px;
     padding-top: 6px;
-    padding-left: 65px;
+    min-height: 5rem;
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
@@ -149,12 +148,8 @@
     content: counter(li);
     counter-increment: li;
     position: absolute;
-    top: 0.4rem;
+    top: 0;
     left: 0;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
     width: 4.5rem;
     height: 4.5rem;
     font-family: $font-alt;
@@ -164,10 +159,6 @@
     border-radius: 50%;
     line-height: 5rem;
     text-align: center;
-    opacity: 0;
-    animation: pulse-grow 0.5s linear;
-    animation-delay: inherit;
-    animation-fill-mode: forwards;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       top: 1rem;
@@ -188,12 +179,6 @@
 
   p {
     margin: 0;
-    opacity: 0;
-    animation-name: fade-in-to-left;
-    animation-duration: 0.3s;
-    animation-timing-function: ease-in-out;
-    animation-delay: inherit;
-    animation-fill-mode: forwards;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(1.4rem * 2.2);
@@ -201,23 +186,10 @@
   }
 }
 
-/* stylelint-disable-next-line */
-@for $i from 1 to 5 {
-  .rules__item:nth-child(#{$i}) {
-    animation-delay: (0.3s * $i);
-  }
-}
-
 .rules__link {
   position: absolute;
   bottom: 6rem;
   right: 5.6rem;
-  opacity: 0;
-
-  &.active {
-    animation: button-grow 1s linear;
-    animation-fill-mode: forwards;
-  }
 
   @media (min-width: $stop-scaling) {
     bottom: 60px;
